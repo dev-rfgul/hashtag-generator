@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hashtag Generator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h5>
+        a project by <span style="color: hsl(186 100% 69%)">dev rf-gul</span>
+      </h5>
+      <div class="container">
+        <h1 class="heading">
+          <span class="auto-typed"></span>
+        </h1>
+      </div>
+
+      <textarea
+        id="textInput"
+        rows="15"
+        cols="50"
+        placeholder="Enter your paragraph  here to generate SEO friendly Hashtags..."
+      ></textarea>
+
+      <button class="glowing-btn">
+        <span
+          onclick="generateHashtags() , displayHashtags()"
+          class="glowing-txt"
+          >C<span class="faulty-letter">L</span>ICK
+        </span>
+      </button>
+
+      <div id="keywords"></div>
+      <div id="hashtags"></div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  </body>
+</html>
+
+<script>
+  // types js
+
+  const typed = new Typed(".auto-typed", {
+    strings: [" AI Based Hashtag Generator"],
+    typeSpeed: 80,
+    backSpeed: 40,
+    typeDelay: 1000,
+    loop: true,
+  });
+</script>
