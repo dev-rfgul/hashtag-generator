@@ -26,7 +26,7 @@ async function generateHashtags() {
     {
       role: "system",
       content:
-        "You are a SEO expert who have to generate hashtags  and you have to extract all the relevant keywords from the paragraph and after that you have to generate the SEO friendly hashtags for the paragraph based on the keywords and current trends and at the end regenerate the paragraph using the extracted SEO friendly keywords and  add the hashtags at the end of the paragraph.",
+        "You are a SEO expert who have to generate hashtags  and you have to extract all the relevant keywords from the paragraph and after that you have to generate the SEO friendly hashtags for the paragraph based on the keywords and current trends and at the end regenerate the paragraph using the extracted SEO friendly keywords and  add the hashtags at the end of the paragraph. insert hashtags at the end of the paragaraph",
     },
     {
       role: "user",
@@ -49,8 +49,12 @@ async function generateHashtags() {
     }
 
     const data = await response.json();
-    console.log("Response from Groq AI:", data);
-    // Handle the response data here
+    // console.log("Response from Groq AI line no 52 in script js:", data);
+    // console.log("from line no 53",data["choices"][0].message.content)
+    const content= data["choices"][0].message.content;
+    console.log("content",content)
+    const keywords = content.split(":")[1].split("#").map((keywords) => keywords.trim());
+    console.log("keywords:",`${keywords }`)
   } catch (error) {
     console.error("Error:", error);
   }
