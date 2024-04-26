@@ -1,25 +1,11 @@
 body {
   font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  min-height: 100vh;
 }
-
-
-.container {
-  max-width: 600px;
-  margin: 50px auto;
-  text-align: center;
-}
-
-textarea {
-  width: 100%;
-  margin-bottom: 10px;
-  /* resize: none; */
-}
-
-#keywords,
-#hashtags {
-  margin-top: 20px;
-}
-
 
 .container {
   max-width: 600px;
@@ -44,43 +30,40 @@ button:hover {
   background-color: #0056b3;
 }
 
+.heading {
+  color: hsl(186 90% 49%);
+}
+
+h5 {
+  color: white;
+}
+
 #keywords,
-#hashtags {
+#hashtags,
+#regeneratedText {
+  color: black;
+  min-height: 300px;
+  width: 30%;
+  background-color: white;
   margin-top: 20px;
 }
-.heading{
-  color:hsl(186 90% 49%);
-}
-h5{
-  color: white;
 
+.contentBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20%;
+  margin-bottom: 20%;
 }
-/* button styling  */
+
+.contentBox div {
+  margin-right: 10px;
+}
+
 @import url("https://fonts.googleapis.com/css?family=Raleway");
 
 :root {
   --glow-color: hsl(186 100% 69%);
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-}
-
-body {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: black;
 }
 
 .glowing-btn {
@@ -96,7 +79,6 @@ body {
   font-size: 2em;
   font-weight: 900;
   letter-spacing: 1em;
-
   -webkit-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
     0px 0px 0.5em 0px var(--glow-color);
   -moz-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
@@ -200,7 +182,6 @@ body {
   83% {
     opacity: 0.4;
   }
-
   87% {
     opacity: 1;
   }
@@ -210,19 +191,15 @@ body {
   0% {
     opacity: 0.1;
   }
-
   2% {
     opacity: 1;
   }
-
   8% {
     opacity: 0.1;
   }
-
   9% {
     opacity: 1;
   }
-
   12% {
     opacity: 0.1;
   }
@@ -235,14 +212,12 @@ body {
   30% {
     opacity: 1;
   }
-
   70% {
     opacity: 0.7;
   }
   72% {
     opacity: 0.2;
   }
-
   77% {
     opacity: 0.9;
   }
@@ -261,7 +236,6 @@ body {
   4% {
     opacity: 0.1;
   }
-
   8% {
     opacity: 1;
   }
@@ -278,6 +252,3 @@ body {
     font-size: 1em;
   }
 }
-
-
-

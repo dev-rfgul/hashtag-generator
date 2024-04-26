@@ -1,26 +1,8 @@
-// function displayHashtags(hashtags) {
-//   const hashtagsDiv = document.getElementById("hashtags");
-//   hashtagsDiv.innerHTML = "<h2>Generated Hashtags</h2>";
-//   const ul = document.createElement("ul");
-
-//   hashtags.forEach((hashtag) => {
-//     const li = document.createElement("li");
-//     li.textContent = hashtag;
-//     ul.appendChild(li);
-//   });
-
-//   hashtagsDiv.appendChild(ul);
-// }
-
-
-
-
 const apiUrl = "https://api.groq.com/openai/v1/chat/completions";
-const apiKey = "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";
+var apiKey = "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 ";
 
 async function generateHashtags() {
   const textInput = document.getElementById("textInput").value;
-  alert(textInput);
 
   const messages = [
     {
@@ -30,7 +12,7 @@ async function generateHashtags() {
     },
     {
       role: "user",
-      content: textInput, 
+      content: textInput,
     },
   ];
 
@@ -39,9 +21,9 @@ async function generateHashtags() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`, 
+        Authorization: `Bearer ${apiKey}`,
       },
-      body: JSON.stringify({ messages , "model": "mixtral-8x7b-32768"}),
+      body: JSON.stringify({ messages, model: "mixtral-8x7b-32768" }),
     });
 
     if (!response.ok) {
@@ -49,51 +31,27 @@ async function generateHashtags() {
     }
 
     const data = await response.json();
-    // console.log("Response from Groq AI line no 52 in script js:", data);
-    // console.log("from line no 53",data["choices"][0].message.content)
-    const content= data["choices"][0].message.content;
-    console.log("content",content)
-    const keywords = content.split(":")[1].split("#").map((keywords) => keywords.trim());
-    console.log("keywords:",`${keywords }`)
+    const content = data["choices"][0].message.content;
+    // console.log(content)
+    const sections = content.split("\n\n");
+    console.log(sections);
+    // Extract keywords
+    const keywords = sections[0].split(": ")[1].split(", ");
+    // Extract hashtags
+    const hashtags = sections[1].split(": ")[1].split(", ");
+    // Extract regenerated text
+    const regeneratedText = sections.slice(2).join("\n\n");
+
+    console.log(regeneratedText);
+
+    // Display the extracted parts
+    document.getElementById("keywords").innerHTML =
+      "<strong>Keywords:</strong> " + keywords.join(", ");
+    document.getElementById("hashtags").innerHTML =
+      "<strong>SEO friendly hashtags:</strong> " + hashtags.join(", ");
+    document.getElementById("regeneratedText").innerHTML =
+      "<strong>Regenerated paragraph:</strong> " + regeneratedText;
   } catch (error) {
     console.error("Error:", error);
   }
 }
-
-
-function displayHashtags(hashtags) {
-  const hashtagsDiv = document.getElementById("hashtags");
-  hashtagsDiv.innerHTML = "<h2>Generated Hashtags</h2>";
-  const ul = document.createElement("ul");
-
-  hashtags.forEach((hashtag) => {
-    const li = document.createElement("li");
-    li.textContent = hashtag;
-    ul.appendChild(li);
-  });
-
-  hashtagsDiv.appendChild(ul);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Keywords: Tic Tac Toe, multiplayer, HTML, CSS, JavaScript, mobile-responsive, game, friends, family, mobile device, computer.
-
-// SEO friendly hashtags: #TicTacToe #Multiplayer #HTML #CSS #JavaScript #MobileResponsive #Game #Friends #Family #MobileDevice #Computer
-
-// Regenerated paragraph:
-
-// Introducing my latest creation: a multiplayer Tic Tac Toe game! This game is built entirely with HTML, CSS, and JavaScript, making it fully functional and mobile-responsive. Challenge your friends to a game anytime, anywhere - all they need is a mobile device or computer. I'm thrilled to share this project with you all. Give it a try and let me know what changes can be made in the code as well as the game. #TicTacToe #Multiplayer #HTML #CSS #JavaScript #MobileResponsive #Game #Friends #Family #MobileDevice #Computer
