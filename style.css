@@ -22,6 +22,9 @@ textarea {
   padding-left:20px;
 
 }
+textarea text{
+  font-size: 20px;
+}
 
 button {
   padding: 10px 20px;
@@ -67,9 +70,7 @@ h5 {
   margin-bottom: 20%;
 }
 
-.contentBox div {
-  /* margin-right: 10px; */
-}
+
 
 @import url("https://fonts.googleapis.com/css?family=Raleway");
 
