@@ -5,6 +5,8 @@ body {
   align-items: center;
   background: black;
   min-height: 100vh;
+  padding-left: 10%;
+  padding-right: 14%;
 }
 
 .container {
@@ -16,6 +18,9 @@ body {
 textarea {
   width: 100%;
   margin-bottom: 10px;
+  /* border-radius: 20px; */
+  padding-left:20px;
+
 }
 
 button {
@@ -32,6 +37,7 @@ button:hover {
 
 .heading {
   color: hsl(186 90% 49%);
+  overflow: hidden;
 }
 
 h5 {
@@ -41,15 +47,20 @@ h5 {
 #keywords,
 #hashtags,
 #regeneratedText {
-  color: black;
-  min-height: 300px;
-  width: 30%;
-  background-color: white;
+  color: rgba(255, 255, 255, 0.74);
+  background-color: black;
   margin-top: 20px;
+  border-radius: 10px;
+  padding: 19px;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .contentBox {
-  display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 20%;
@@ -57,7 +68,7 @@ h5 {
 }
 
 .contentBox div {
-  margin-right: 10px;
+  /* margin-right: 10px; */
 }
 
 @import url("https://fonts.googleapis.com/css?family=Raleway");

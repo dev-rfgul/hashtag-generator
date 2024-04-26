@@ -45,12 +45,50 @@ async function generateHashtags() {
     console.log(regeneratedText);
 
     // Display the extracted parts
-    document.getElementById("keywords").innerHTML =
-      "<strong>Keywords:</strong> " + keywords.join(", ");
-    document.getElementById("hashtags").innerHTML =
-      "<strong>SEO friendly hashtags:</strong> " + hashtags.join(", ");
-    document.getElementById("regeneratedText").innerHTML =
-      "<strong>Regenerated paragraph:</strong> " + regeneratedText;
+document.getElementById("keywords").innerHTML =
+"<strong>Keywords:</strong><br>" +
+keywords.join(", ") +
+`<br><img src="copy-icon.png" alt="" class="copyIcon">`;
+document.getElementById("hashtags").innerHTML =
+"<strong>SEO friendly hashtags:</strong><br>" +
+hashtags.join(", ") +
+`<br><img src="copy-icon.png" alt="" class="copyIcon">`;
+
+document.getElementById("regeneratedText").innerHTML =
+"<strong>Regenerated paragraph:</strong><br> " +
+regeneratedText +
+`<br><img src="copy-icon.png" alt="" class="copyIcon">`;
+
+
+const copyIcons = document.getElementsByClassName("copyIcon");
+
+
+for (let i = 0; i < copyIcons.length; i++) {
+copyIcons[i].addEventListener("click", function() {
+ 
+  let textToCopy = this.previousSibling.textContent.trim();
+ 
+  const textarea = document.createElement("textarea");
+ 
+  textarea.value = textToCopy;
+ 
+  document.body.appendChild(textarea);
+ 
+  textarea.select();
+ 
+  document.execCommand("copy");
+ 
+  document.body.removeChild(textarea);
+  
+  alert("Text copied to clipboard!");
+});
+}
+
+
+    // Scroll to the contentDiv smoothly
+    document
+      .querySelector(".contentBox")
+      .scrollIntoView({ behavior: "smooth" });
   } catch (error) {
     console.error("Error:", error);
   }
