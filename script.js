@@ -21,11 +21,13 @@ async function generateHashtags() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "response-format": "json_object",
         Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({ messages, model: "mixtral-8x7b-32768" }),
     });
 
+    console.log(response)
     if (!response.ok) {
       throw new Error(`Network response was not ok: ${response.statusText}`);
     }
@@ -48,16 +50,16 @@ async function generateHashtags() {
 document.getElementById("keywords").innerHTML =
 "<strong>Keywords:</strong><br>" +
 keywords.join(", ") +
-`<br><img src="copy-icon.png" alt="" class="copyIcon">`;
+`<br><img onclick="showToast()" src="copy-icon.png" alt="" class="copyIcon">`;
 document.getElementById("hashtags").innerHTML =
 "<strong>SEO friendly hashtags:</strong><br>" +
 hashtags.join(", ") +
-`<br><img src="copy-icon.png" alt="" class="copyIcon">`;
+`<br><img onclick="showToast()" src="copy-icon.png" alt="" class="copyIcon">`;
 
 document.getElementById("regeneratedText").innerHTML =
 "<strong>Regenerated paragraph:</strong><br> " +
 regeneratedText +
-`<br><img src="copy-icon.png" alt="" class="copyIcon">`;
+`<br><img  onclick="showToast()" src="copy-icon.png" alt="" class="copyIcon">`;
 
 
 const copyIcons = document.getElementsByClassName("copyIcon");
@@ -79,8 +81,9 @@ copyIcons[i].addEventListener("click", function() {
   document.execCommand("copy");
  
   document.body.removeChild(textarea);
+  // alert("Text copied to clipboard!");
+  document.body.showToast();
   
-  alert("Text copied to clipboard!");
 });
 }
 
@@ -93,3 +96,25 @@ copyIcons[i].addEventListener("click", function() {
     console.error("Error:", error);
   }
 }
+
+function showToast() {
+  Toastify({
+    text: "Text Copied to Clip Board",
+    duration: 9000,
+    destination: "https://github.com/apvarun/toastify-js",
+    newWindow: true,
+    close: true,
+    gravity: "top", // `top` or `bottom`
+    position: "left", // `left`, `center` or `right`
+    stopOnFocus: true, // Prevents dismissing of toast on hover
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)"
+    },
+    onClick: function(){} // Callback after click
+  }).showToast();
+}
+
+
+// document.addEventListener("DOMContentLoaded", function() {
+//   showToast();
+// });
