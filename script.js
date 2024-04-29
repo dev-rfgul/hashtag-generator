@@ -28,12 +28,13 @@ async function generateHashtags() {
       body: JSON.stringify({ messages, model: "mixtral-8x7b-32768" }),
     });
 
-    console.log(response)
+    console.log(response);
     if (!response.ok) {
       throw new Error(`Network response was not ok: ${response.statusText}`);
     }
 
     const data = await response.json();
+    resultLoadedToast();
     const content = data["choices"][0].message.content;
     // console.log(content)
     const sections = content.split("\n\n");
@@ -47,46 +48,41 @@ async function generateHashtags() {
 
     console.log(regeneratedText);
     // Display the extracted parts
-document.getElementById("keywords").innerHTML =
-"<strong>Keywords:</strong><br>" +
-keywords.join(", ") +
-`<br><img onclick="showToast()" src="copy-icon.png" alt="" class="copyIcon">`;
-document.getElementById("hashtags").innerHTML =
-"<strong>SEO friendly hashtags:</strong><br>" +
-hashtags.join(", ") +
-`<br><img onclick="showToast()" src="copy-icon.png" alt="" class="copyIcon">`;
+    document.getElementById("keywords").innerHTML =
+      "<strong>Keywords:</strong><br>" +
+      keywords.join(", ") +
+      `<br><img onclick="copiedKeywordsToast()" src="copy-icon.png" alt="" class="copyIcon">`;
+    document.getElementById("hashtags").innerHTML =
+      "<strong>SEO friendly hashtags:</strong><br>" +
+      hashtags.join(", ") +
+      `<br><img onclick="copiedHashtagToast ()" src="copy-icon.png" alt="" class="copyIcon">`;
 
-document.getElementById("regeneratedText").innerHTML =
-"<strong>Regenerated paragraph:</strong><br> " +
-regeneratedText +
-`<br><img  onclick="showToast()" src="copy-icon.png" alt="" class="copyIcon">`;
+    document.getElementById("regeneratedText").innerHTML =
+      "<strong>Regenerated paragraph:</strong><br> " +
+      regeneratedText +
+      `<br><img  onclick="copiedRegeneratedToast()" src="copy-icon.png" alt="" class="copyIcon">`;
 
+    const copyIcons = document.getElementsByClassName("copyIcon");
 
-const copyIcons = document.getElementsByClassName("copyIcon");
+    for (let i = 0; i < copyIcons.length; i++) {
+      copyIcons[i].addEventListener("click", function () {
+        let textToCopy = this.previousSibling.textContent.trim();
 
+        const textarea = document.createElement("textarea");
 
-for (let i = 0; i < copyIcons.length; i++) {
-copyIcons[i].addEventListener("click", function() {
- 
-  let textToCopy = this.previousSibling.textContent.trim();
- 
-  const textarea = document.createElement("textarea");
- 
-  textarea.value = textToCopy;
- 
-  document.body.appendChild(textarea);
- 
-  textarea.select();
- 
-  document.execCommand("copy");
- 
-  document.body.removeChild(textarea);
-  // alert("Text copied to clipboard!");
-  document.body.showToast();
-  
-});
-}
+        textarea.value = textToCopy;
 
+        document.body.appendChild(textarea);
+
+        textarea.select();
+
+        document.execCommand("copy");
+
+        document.body.removeChild(textarea);
+        // alert("Text copied to clipboard!");
+        document.body.showToast();
+      });
+    }
 
     // Scroll to the contentDiv smoothly
     document
@@ -97,10 +93,58 @@ copyIcons[i].addEventListener("click", function() {
   }
 }
 
-function showToast() {
+function copiedKeywordsToast() {
   Toastify({
-    text: "Text Copied to Clip Board",
+    text: "Copied Keywords to clipboard!",
     duration: 9000,
+    destination: "https://github.com/apvarun/toastify-js",
+    newWindow: true,
+    close: true,
+    gravity: "top", // `top` or `bottom`
+    position: "right", // `left`, `center` or `right`
+    stopOnFocus: true, // Prevents dismissing of toast on hover
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    },
+    onClick: function () {}, // Callback after click
+  }).showToast();
+}
+function copiedHashtagToast() {
+  Toastify({
+    text: " Copied Hashtags to clipboard!",
+    duration: 9000,
+    destination: "https://github.com/apvarun/toastify-js",
+    newWindow: true,
+    close: true,
+    gravity: "top", // `top` or `bottom`
+    position: "right", // `left`, `center` or `right`
+    stopOnFocus: true, // Prevents dismissing of toast on hover
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    },
+    onClick: function () {}, // Callback after click
+  }).showToast();
+}
+function copiedRegeneratedToast() {
+  Toastify({
+    text: "Copied Regenerated Text to clipboard!",
+    duration: 9000,
+    destination: "https://github.com/apvarun/toastify-js",
+    newWindow: true,
+    close: true,
+    gravity: "top", // `top` or `bottom`
+    position: "right", // `left`, `center` or `right`
+    stopOnFocus: true, // Prevents dismissing of toast on hover
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    },
+    onClick: function () {}, // Callback after click
+  }).showToast();
+}
+function loadingToast() {
+  Toastify({
+    text: "Wait plz!!! we are generating hashtags for you...",
+    duration: 3000,
     destination: "https://github.com/apvarun/toastify-js",
     newWindow: true,
     close: true,
@@ -108,13 +152,24 @@ function showToast() {
     position: "left", // `left`, `center` or `right`
     stopOnFocus: true, // Prevents dismissing of toast on hover
     style: {
-      background: "linear-gradient(to right, #00b09b, #96c93d)"
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
     },
-    onClick: function(){} // Callback after click
+    onClick: function () {}, // Callback after click
   }).showToast();
 }
-
-
-// document.addEventListener("DOMContentLoaded", function() {
-//   showToast();
-// });
+function resultLoadedToast() {
+  Toastify({
+    text: "Congratulations!!! Your result has been loaded",
+    duration: 5000,
+    destination: "https://github.com/apvarun/toastify-js",
+    newWindow: true,
+    close: true,
+    gravity: "top", // `top` or `bottom`
+    position: "right", // `left`, `center` or `right`
+    stopOnFocus: true, // Prevents dismissing of toast on hover
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    },
+    onClick: function () {}, // Callback after click
+  }).showToast();
+}
