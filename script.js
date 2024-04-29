@@ -1,5 +1,6 @@
 const apiUrl = "https://api.groq.com/openai/v1/chat/completions";
-var apiKey = "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 ";
+// var apiKey = "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 ";
+var apiKey = "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";
 
 async function generateHashtags() {
   const textInput = document.getElementById("textInput").value;
@@ -45,7 +46,6 @@ async function generateHashtags() {
     const regeneratedText = sections.slice(2).join("\n\n");
 
     console.log(regeneratedText);
-
     // Display the extracted parts
 document.getElementById("keywords").innerHTML =
 "<strong>Keywords:</strong><br>" +
