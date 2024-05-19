@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hashtag Generator</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
   </head>
   <body>
     <div class="container">
@@ -19,13 +23,12 @@
       </div>
 
       <textarea
-      id="textInput"
-      style="font-size: 20px;"
-      rows="10"
-      cols="70"
-      placeholder="Enter your paragraph here to generate SEO friendly Hashtags..."
-  ></textarea>
-  
+        id="textInput"
+        style="font-size: 20px"
+        rows="10"
+        cols="70"
+        placeholder="Enter your paragraph here to generate SEO friendly Hashtags..."
+      ></textarea>
 
       <button onclick="loadingToast()" class="glowing-btn">
         <span
@@ -34,27 +37,22 @@
           >C<span class="faulty-letter">L</span>ICK
         </span>
       </button>
-      <h2 style="color: white ;">Results will be shown here</h2>
+      <h2 style="color: white">Results will be shown here</h2>
 
       <div class="contentBox">
-        <div  id="keywords"> <strong>
-          Keywords 
-        </strong></div>
-        <div  id="hashtags"> <strong>
-          Hashtags
-        </strong> </div>
-        <div  id="regeneratedText"> <strong>
-          Regenerated Text
-        </strong></div>
+        <div id="keywords"><strong> Keywords </strong></div>
+        <div id="hashtags"><strong> Hashtags </strong></div>
+        <div id="regeneratedText"><strong> Regenerated Text </strong></div>
       </div>
       <button onclick="showToast()">Show Toast</button>
-
     </div>
-  
 
     <script src="script.js"></script>
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
   </body>
 </html>
 
@@ -69,5 +67,3 @@
     loop: true,
   });
 </script>
-
-

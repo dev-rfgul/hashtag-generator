@@ -1,10 +1,17 @@
 const apiUrl = "https://api.groq.com/openai/v1/chat/completions";
 // var apiKey = "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 ";
-var apiKey = "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";
+ var apiKey= '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'
+
+// var apiKey = "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";
 
 async function generateHashtags() {
   const textInput = document.getElementById("textInput").value;
-
+  function wordsCount(textInput) {
+    let totalChars = textInput.length;
+    console.log("The total charachters in the paragraph is : "+totalChars);
+    wordsCountToast(totalChars);
+  }
+wordsCount(textInput);
   const messages = [
     {
       role: "system",
@@ -34,6 +41,7 @@ async function generateHashtags() {
     }
 
     const data = await response.json();
+    console.log(data);
     resultLoadedToast();
     const content = data["choices"][0].message.content;
     // console.log(content)
@@ -150,6 +158,22 @@ function loadingToast() {
     close: true,
     gravity: "top", // `top` or `bottom`
     position: "left", // `left`, `center` or `right`
+    stopOnFocus: true, // Prevents dismissing of toast on hover
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    },
+    onClick: function () {}, // Callback after click
+  }).showToast();
+}
+function wordsCountToast(totalWords) {
+  Toastify({
+    text: "The total words in your Paragraph are : "+totalWords,
+    duration: 5000,
+    destination: "https://github.com/apvarun/toastify-js",
+    newWindow: true,
+    close: true,
+    gravity: "top", // `top` or `bottom`
+    position: "right", // `left`, `center` or `right`
     stopOnFocus: true, // Prevents dismissing of toast on hover
     style: {
       background: "linear-gradient(to right, #00b09b, #96c93d)",
